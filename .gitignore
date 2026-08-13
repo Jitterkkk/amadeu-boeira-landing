@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+dist/
+.env
+.env.local
+.DS_Store
+*.log
+
+# Imagens brutas de origem (pesadas) - adicionar via Git LFS ou otimizadas quando o projeto for iniciado
+/amadeu_imgs/
