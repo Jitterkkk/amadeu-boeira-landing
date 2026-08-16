@@ -1,0 +1,8 @@
+{
+  "name": "amadeu-boeira-landing",
+  "compatibility_date": "2026-08-16",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}
