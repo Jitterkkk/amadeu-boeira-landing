@@ -12,13 +12,10 @@ const poppins = Poppins({
   display: "swap",
 });
 
-// NEXT_PUBLIC_SITE_URL precisa estar setada no build de produção — o
-// fallback abaixo é um domínio placeholder, não o domínio real da campanha.
-// Ver README > Deploy.
-const SITE_URL_PLACEHOLDER = "https://amadeuboeira.com.br";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://amadeuboeira.com.br";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? SITE_URL_PLACEHOLDER),
+  metadataBase: new URL(siteUrl),
   title: "Amadeu Boeira 44661 — Deputado Estadual | União Brasil",
   description:
     "Quem faz de verdade, faz ainda mais pelo Rio Grande. Conheça a trajetória e os resultados de Amadeu Boeira, candidato a Deputado Estadual pelo União Brasil.",

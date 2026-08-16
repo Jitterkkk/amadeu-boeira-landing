@@ -75,13 +75,11 @@ npm run lint
 2. Configuração de build:
    - **Build command:** `npm run build`
    - **Build output directory:** `out`
-3. **Obrigatório antes de ir para produção:** defina a variável de ambiente
-   `NEXT_PUBLIC_SITE_URL` com o domínio real da campanha (ex:
-   `https://amadeuboeira.com.br`) no painel do Cloudflare Pages. Ela vira o
-   `metadataBase` em `app/layout.tsx`, usado para montar as URLs absolutas
-   do Open Graph (imagem de compartilhamento, etc). Sem essa variável, o
-   build usa um domínio placeholder e o preview de link nas redes sociais
-   sai errado.
+3. O domínio (`https://amadeuboeira.com.br`) já está fixo em
+   `app/layout.tsx` como `metadataBase` — usado para montar as URLs
+   absolutas do Open Graph (imagem de compartilhamento, etc). Se o domínio
+   final mudar, ajuste direto ali (ou defina `NEXT_PUBLIC_SITE_URL` no
+   painel do Cloudflare Pages pra sobrescrever sem mexer no código).
 
 ## Estrutura
 
