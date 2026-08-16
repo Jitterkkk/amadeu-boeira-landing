@@ -1,11 +1,27 @@
-node_modules/
-.next/
-out/
-dist/
-.env
-.env.local
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
 .DS_Store
+*.pem
 *.log
 
-# Imagens brutas de origem (pesadas) - adicionar via Git LFS ou otimizadas quando o projeto for iniciado
+# env
+.env
+.env*.local
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Imagens brutas de origem (pesadas, com EXIF) - nunca versionar.
+# Otimizadas via scripts/otimizar-imagens.mjs vão para public/img/projetos/
 /amadeu_imgs/

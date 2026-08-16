@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-azul-escuro: #0145ab;
+  --color-azul-base: #0255c7;
+  --color-azul-claro: #025cd2;
+  --color-amarelo: #f8bd1b;
+  --color-amarelo-deep: #edb800;
+  --color-ciano: #00c0ff;
+  --color-branco: #ffffff;
+  /* Superfície das seções claras — leve tom frio, não #fff puro, pra não
+     "estourar" ao lado do azul saturado das outras seções. */
+  --color-superficie-clara: #f5f8fd;
+
+  /* Cores da faixa tricolor (bandeira do RS), extraídas do impresso.
+     Diferem de propósito do --color-amarelo de marca — não unificar. */
+  --color-tri-verde: #048f3e;
+  --color-tri-vermelho: #d6251e;
+  --color-tri-amarelo: #f9ba09;
+}
+
+/* Passthrough: valor real vem da CSS var que next/font aplica via className */
+@theme inline {
+  --font-poppins: var(--font-poppins);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  /* Fallback sólido (visível só num flash de overscroll em mobile) —
+     cada seção define o próprio fundo agora, ver .bg-brand-radial e
+     .secao-clara. */
+  background: var(--color-azul-escuro);
+  color: var(--color-branco);
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+}
+
+/* Gradiente radial de marca — nunca chapado. Centro claro, bordas escuras.
+   Usado nas seções "azuis" (Hero, Resultados) pra quebrar o azul chapado
+   alternando com .secao-clara nas seções "brancas" (Quem É, Futuro). */
+.bg-brand-radial {
+  background: radial-gradient(
+    circle at center,
+    var(--color-azul-claro) 0%,
+    var(--color-azul-escuro) 100%
+  );
+}
+
+/* Seção clara — metade da alternância azul/branco/azul/branco. */
+.secao-clara {
+  background: var(--color-superficie-clara);
+  color: var(--color-azul-escuro);
+}
+
+/* Faixa tricolor (bandeira do RS) usada sob a assinatura, como no impresso. */
+.faixa-rs {
+  background: linear-gradient(
+    to right,
+    var(--color-tri-verde) 0%,
+    var(--color-tri-verde) 33.33%,
+    var(--color-tri-vermelho) 33.33%,
+    var(--color-tri-vermelho) 66.66%,
+    var(--color-tri-amarelo) 66.66%,
+    var(--color-tri-amarelo) 100%
+  );
+}
+
+/* Entrada em cascata do Hero (número → foto → headline → assinatura).
+   Puro CSS: nada bloqueia o LCP esperando JS, e a regra de
+   prefers-reduced-motion no topo do arquivo já reduz a duração a ~0,
+   então o conteúdo aparece estático e completo sem esforço extra. */
+@keyframes cascata-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-cascata {
+  animation: cascata-entrada 0.7s ease-out both;
+}
+
+.hero-cascata-numero {
+  animation-delay: 0s;
+}
+.hero-cascata-foto {
+  animation-delay: 0.15s;
+}
+.hero-cascata-headline {
+  animation-delay: 0.35s;
+}
+.hero-cascata-assinatura {
+  animation-delay: 0.55s;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
