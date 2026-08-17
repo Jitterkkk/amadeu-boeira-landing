@@ -1,8 +1,6 @@
-import { ChevronDown } from "lucide-react";
-
 export function Hero() {
   return (
-    <section className="bg-brand-radial relative isolate overflow-hidden pb-6 text-center sm:pb-10">
+    <section className="relative isolate overflow-hidden text-center">
       {/* React 19 eleva este <link> para o <head> automaticamente. Mesmo
           srcset/sizes do <picture> abaixo — senão o preload baixa um
           arquivo e o navegador decide servir outro, pagando o peso duas
@@ -45,13 +43,6 @@ export function Hero() {
             className="block h-auto w-full"
           />
         </picture>
-      </div>
-
-      <div
-        aria-hidden="true"
-        className="relative z-10 mt-4 flex animate-bounce justify-center text-branco/70"
-      >
-        <ChevronDown size={24} />
       </div>
     </section>
   );
