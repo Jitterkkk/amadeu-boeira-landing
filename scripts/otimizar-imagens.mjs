@@ -147,8 +147,18 @@ const MANIFEST = [
   // 20210115_185021_4.jpg.jpeg — a original de 159x117px, substituída pela
   // 20210115_185023_5.jpg.jpeg (mesma cena, resolução usável).
   {
+    // Substituída pelo banner pronto (logo + foto + frase) mandado depois.
+    // Fica como sobra caso queira voltar ao layout anterior do Hero.
     src: "A7R00812.jpg.jpeg",
     slug: "hero-candidato",
+    mode: "retrato",
+    dir: "retratos",
+  },
+  {
+    // Banner completo pra Hero — landscape, mantém proporção original
+    // (sem crop), "retrato" aqui só significa "não recortar".
+    src: "imagens_projetos/WhatsApp Image 2026-08-17 at 19.58.43.jpeg",
+    slug: "hero-banner",
     mode: "retrato",
     dir: "retratos",
   },

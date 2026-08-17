@@ -99,12 +99,6 @@ body {
 .hero-cascata-foto {
   animation-delay: 0.15s;
 }
-.hero-cascata-headline {
-  animation-delay: 0.35s;
-}
-.hero-cascata-assinatura {
-  animation-delay: 0.55s;
-}
 
 .no-scrollbar {
   scrollbar-width: none;

@@ -1,12 +1,10 @@
 import { ChevronDown } from "lucide-react";
-import { FotoRetrato } from "@/components/ui/FotoRetrato";
-import { LogoAmadeu } from "@/components/ui/LogoAmadeu";
 
-const HERO_SIZES = "(min-width: 640px) 288px, 224px";
+const BANNER_SIZES = "(min-width: 1024px) 1024px, calc(100vw - 32px)";
 
 export function Hero() {
   return (
-    <section className="bg-brand-radial relative isolate flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-16 text-center">
+    <section className="bg-brand-radial relative isolate flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-16 text-center sm:px-6">
       {/* React 19 eleva este <link> para o <head> automaticamente. Mesmo
           srcset/sizes do <picture> abaixo — senão o preload baixa um
           arquivo e o navegador decide servir outro, pagando o peso duas
@@ -16,11 +14,19 @@ export function Hero() {
         rel="preload"
         as="image"
         type="image/webp"
-        href="/img/retratos/hero-candidato-800.webp"
-        imageSrcSet="/img/retratos/hero-candidato-800.webp 800w, /img/retratos/hero-candidato-1600.webp 1600w"
-        imageSizes={HERO_SIZES}
+        href="/img/retratos/hero-banner-800.webp"
+        imageSrcSet="/img/retratos/hero-banner-800.webp 800w, /img/retratos/hero-banner-1600.webp 1600w"
+        imageSizes={BANNER_SIZES}
         fetchPriority="high"
       />
+
+      {/* Banner já traz nome, número e frase de campanha embutidos na
+          imagem — o h1 abaixo existe só pra manter a hierarquia de
+          heading/SEO da página, sem duplicar o texto visualmente. */}
+      <h1 className="sr-only">
+        Amadeu Boeira, Deputado Estadual 44661. Coragem para decidir,
+        compromisso para fazer.
+      </h1>
 
       <p
         aria-hidden="true"
@@ -30,39 +36,24 @@ export function Hero() {
         44661
       </p>
 
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-12 top-16 h-40 w-40 rotate-12 rounded-3xl bg-amarelo/90 sm:h-56 sm:w-56"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-16 bottom-24 h-32 w-32 -rotate-12 rounded-full bg-amarelo/80 sm:h-48 sm:w-48"
-      />
-
-      <div className="relative z-10 flex flex-col items-center gap-6">
-        <div className="hero-cascata hero-cascata-foto">
-          <FotoRetrato
-            slug="hero-candidato"
-            alt="Amadeu Boeira, candidato a Deputado Estadual"
-            prioridade
-            sizes={HERO_SIZES}
-            className="h-64 w-52 rounded-3xl object-cover shadow-2xl sm:h-80 sm:w-64"
+      <div className="hero-cascata hero-cascata-foto relative z-10 w-full max-w-5xl">
+        <picture>
+          <source
+            type="image/webp"
+            srcSet="/img/retratos/hero-banner-800.webp 800w, /img/retratos/hero-banner-1600.webp 1600w"
+            sizes={BANNER_SIZES}
           />
-        </div>
-
-        <h1 className="hero-cascata hero-cascata-headline max-w-3xl text-4xl leading-tight font-extrabold tracking-tight text-branco uppercase sm:text-5xl md:text-6xl">
-          Quem faz de verdade,{" "}
-          <span className="text-amarelo">faz ainda mais pelo Rio Grande.</span>
-        </h1>
-
-        {/* Assinatura só com a logo do Amadeu — o lockup já carrega o selo do
-            partido, e o logo do União Brasil por extenso mora no footer.
-            Repetir os dois aqui deixava esse trecho parecendo um rodapé
-            perdido no meio da página. */}
-        <div className="hero-cascata hero-cascata-assinatura flex flex-col items-center gap-3">
-          <LogoAmadeu prioridade variante="claro" className="h-auto w-64 sm:w-72" />
-          <div aria-hidden="true" className="faixa-rs h-1.5 w-40 rounded-full" />
-        </div>
+          <img
+            src="/img/retratos/hero-banner-800.jpg"
+            alt="Amadeu, Deputado Estadual, número 44661. Coragem para decidir. Compromisso para fazer."
+            width={1280}
+            height={400}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            className="h-auto w-full shadow-2xl"
+          />
+        </picture>
       </div>
 
       <div
