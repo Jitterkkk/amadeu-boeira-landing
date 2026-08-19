@@ -6,11 +6,6 @@ export type Short = {
 
 export const shorts: Short[] = [
   {
-    slug: "short-1",
-    url: "https://www.youtube.com/shorts/O3wvmYeQU20",
-    titulo: "Assistir Short 1 de Amadeu Boeira no YouTube",
-  },
-  {
     slug: "short-2",
     url: "https://www.youtube.com/shorts/PXWuzDaEUtI",
     titulo: "Assistir Short 2 de Amadeu Boeira no YouTube",

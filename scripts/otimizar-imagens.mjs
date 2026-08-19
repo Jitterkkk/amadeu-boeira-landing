@@ -377,7 +377,8 @@ async function gerarLogoAmadeuClaro() {
 }
 
 const SHORTS = [
-  { id: "O3wvmYeQU20", slug: "short-1" },
+  // short-1 (O3wvmYeQU20) saiu do ar no YouTube — removido também de
+  // data/shorts.ts. Se subir outro Short, adiciona aqui.
   { id: "PXWuzDaEUtI", slug: "short-2" },
   { id: "vZFJ16koSK8", slug: "short-3" },
 ];
