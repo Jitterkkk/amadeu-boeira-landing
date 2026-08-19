@@ -156,9 +156,18 @@ const MANIFEST = [
   },
   {
     // Banner completo pra Hero — landscape, mantém proporção original
-    // (sem crop), "retrato" aqui só significa "não recortar".
+    // (sem crop), "retrato" aqui só significa "não recortar". Usado no
+    // Hero a partir do breakpoint lg (>=1024px).
     src: "imagens_projetos/WhatsApp Image 2026-08-17 at 19.58.43.jpeg",
     slug: "hero-banner",
+    mode: "retrato",
+    dir: "retratos",
+  },
+  {
+    // Variante vertical do mesmo banner, pra celular/tablet (<1024px) —
+    // a landscape vira uma tira fina demais nesses tamanhos.
+    src: "imagens_projetos/WhatsApp Image 2026-08-18 at 21.31.44.jpeg",
+    slug: "hero-banner-mobile",
     mode: "retrato",
     dir: "retratos",
   },
