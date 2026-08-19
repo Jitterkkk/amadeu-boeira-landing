@@ -20,6 +20,8 @@ export function Footer() {
           <img
             src="/img/marca/logo-amadeu-claro.png"
             alt="Amadeu, Deputado Estadual, número 44661"
+            width={1600}
+            height={962}
             className="h-auto w-72 sm:w-80 md:w-96"
             loading="lazy"
             decoding="async"
@@ -28,6 +30,8 @@ export function Footer() {
           <img
             src="/img/marca/logo-uniao-brasil.png"
             alt="União Brasil"
+            width={1600}
+            height={222}
             className="h-auto w-56 sm:w-64 md:w-72"
             loading="lazy"
             decoding="async"

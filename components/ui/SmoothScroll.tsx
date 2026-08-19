@@ -32,7 +32,22 @@ export function SmoothScroll() {
       gsap.ticker.add(onTick);
       gsap.ticker.lagSmoothing(0);
 
+      // O Lenis calcula o limite de scroll a partir da altura do documento
+      // num dado momento. Se algo muda essa altura depois (imagem sem
+      // width/height que só reserva o espaço certo quando termina de
+      // carregar, seção que revela por scroll, fonte trocando via
+      // font-display: swap...), o limite antigo fica desatualizado e o
+      // scroll para antes do fim de verdade da página. Um ResizeObserver
+      // no <body> resolve isso de forma genérica, sem depender de caçar
+      // cada causa possível uma por uma.
+      const resizeObserver = new ResizeObserver(() => {
+        lenis.resize();
+        ScrollTrigger.refresh();
+      });
+      resizeObserver.observe(document.body);
+
       destruir = () => {
+        resizeObserver.disconnect();
         gsap.ticker.remove(onTick);
         lenis.destroy();
       };
