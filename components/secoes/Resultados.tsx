@@ -1,18 +1,26 @@
 "use client";
 
 import { useId, useLayoutEffect, useRef, useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { areas, type Area } from "@/data/projetos";
 import { FotoProjeto } from "@/components/ui/FotoProjeto";
 import { Reveal } from "@/components/ui/Reveal";
 
+const LIMITE_INICIAL = 3;
+
 export function Resultados() {
   const [ativaId, setAtivaId] = useState(areas[0].id);
   const [focoId, setFocoId] = useState(areas[0].id);
+  const [mostrarTodos, setMostrarTodos] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const baseId = useId();
 
   const areaAtiva = areas.find((a) => a.id === ativaId) ?? areas[0];
+  const temMais = areaAtiva.projetos.length > LIMITE_INICIAL;
+  const projetosVisiveis = mostrarTodos
+    ? areaAtiva.projetos
+    : areaAtiva.projetos.slice(0, LIMITE_INICIAL);
 
   useLayoutEffect(() => {
     const prefersReduced = window.matchMedia(
@@ -37,11 +45,12 @@ export function Resultados() {
     return () => {
       cancelado = true;
     };
-  }, [ativaId]);
+  }, [ativaId, mostrarTodos]);
 
   function selecionar(id: string) {
     setAtivaId(id);
     setFocoId(id);
+    setMostrarTodos(false);
   }
 
   function aoTeclar(e: React.KeyboardEvent<HTMLButtonElement>, area: Area, index: number) {
@@ -140,7 +149,7 @@ export function Resultados() {
         aria-labelledby={`${baseId}-tab-${areaAtiva.id}`}
         className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {areaAtiva.projetos.map((projeto) => (
+        {projetosVisiveis.map((projeto) => (
           <article
             key={projeto.id}
             data-card
@@ -162,6 +171,30 @@ export function Resultados() {
           </article>
         ))}
       </div>
+
+      {temMais && (
+        <div className="mt-6 flex justify-center px-6">
+          <button
+            type="button"
+            aria-expanded={mostrarTodos}
+            aria-controls={`${baseId}-painel-${areaAtiva.id}`}
+            onClick={() => setMostrarTodos((v) => !v)}
+            className="flex items-center gap-2 rounded-full bg-branco/10 px-6 py-3 text-sm font-bold tracking-wide text-branco uppercase transition-colors hover:bg-branco/20"
+          >
+            {mostrarTodos ? (
+              <>
+                Ver menos
+                <ChevronUp size={18} aria-hidden="true" />
+              </>
+            ) : (
+              <>
+                Ver mais
+                <ChevronDown size={18} aria-hidden="true" />
+              </>
+            )}
+          </button>
+        </div>
+      )}
     </section>
   );
 }
